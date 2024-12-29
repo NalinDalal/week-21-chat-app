@@ -20,17 +20,40 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Chat App
 
-To learn more about Next.js, take a look at the following resources:
+We are using a monorepo next.js part for a chat app
+introduce 2 more repos http-server, ws-server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+apps/web/app/page.tsx; introduced a ui folder in packages so that the buttons, and all other things are generalised
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+update ui/package.json so that there is some efficiency in collecting the other
+things, basically allowing me to use benefits of turbo repo
 
-## Deploy on Vercel
+create a input textbox and initial chat page, initiate a package.json in ui and
+add all the u know things like @ to export and import
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### BackEnd
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+go to http-server and initialise express and ts; same for ws-server
+initialise http-server routes, create cmd for running, building, specify build
+step and dev step in package.json
+
+1. Initialised a monorepo
+2. We learned how to create a design system/ re-use/import things from a 'ui' module.
+3. We learnt about "exports" in package.json
+4. We created a vary minimal frontend for our chat app
+   imported tsconfig from ws into http, hence it thought about ws so create a
+   solutin by extends in http-server
+
+```json
+"extends": "@repo/typescript-config/backends.json"
+```
+
+5. introduce prisma in packages/db
+   note: we need to cache backends also, caches only src not dist folder
+
+6. server ki turbo.json add dist as output to store
+
+7. add a turbo.json in a react cause it is dist(html,css,js file); default says `.next`; so it different
+   run command: `npm run build`
